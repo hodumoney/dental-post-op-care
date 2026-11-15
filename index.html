@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>해양의료원 치과 주의사항</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* 레이아웃: 휴대폰 한 손 사용 기준 1열(최대 480px), 흰 카드 + 연회색 바탕, 하단 탭 2개 */
+:root{
+  --bg:#f2f4f6;
+  --card:#ffffff;
+  --text:#191f28;
+  --sub:#5c6773;
+  --line:#e9ecef;
+  --accent:#3182f6;
+  --accent-soft:#e8f3ff;
+  --accent-ink:#1b64da;
+  --tile-s:92%; --tile-l:94%;
+  --shadow:0 1px 2px rgba(0,23,51,.04);
+  --font:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101114; --card:#1c1d22; --text:#ececef; --sub:#a3a9b3; --line:#2b2d34;
+    --accent:#4c93ff; --accent-soft:#1b2a44; --accent-ink:#8bb8ff;
+    --tile-s:38%; --tile-l:22%; --shadow:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101114; --card:#1c1d22; --text:#ececef; --sub:#a3a9b3; --line:#2b2d34;
+  --accent:#4c93ff; --accent-soft:#1b2a44; --accent-ink:#8bb8ff;
+  --tile-s:38%; --tile-l:22%; --shadow:none; color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:12px}
+.app{max-width:480px;margin:0 auto;padding:0 16px 112px;min-height:100%}
+.view{display:flex;flex-direction:column;gap:14px}
+@media (prefers-reduced-motion:no-preference){
+  .view{animation:rise .22s ease-out}
+  @keyframes rise{from{transform:translateY(6px)}to{transform:none}}
+  .row,.btn,.tab{transition:transform .12s ease,background-color .12s ease}
+  .row:active,.btn:active{transform:scale(.98)}
+}
+
+/* 홈 */
+.hero{padding:34px 6px 8px}
+.hero .brand{display:inline-block;font-size:13.5px;font-weight:800;color:var(--accent-ink);background:var(--accent-soft);padding:4px 11px;border-radius:999px;margin-bottom:12px}
+.hero .hi{font-size:15px;font-weight:500;color:var(--sub)}
+.hero h1{font-size:26px;line-height:1.32;font-weight:800;letter-spacing:-.02em;margin-top:4px;text-wrap:balance}
+.group-title{font-size:14px;font-weight:700;color:var(--sub);padding:10px 6px 0}
+.card{background:var(--card);border-radius:22px;box-shadow:var(--shadow)}
+.list{padding:6px}
+.row{display:flex;align-items:center;gap:14px;width:100%;padding:11px 10px;border-radius:16px;text-align:left}
+.row:hover{background:var(--bg)}
+.tile{flex:none;width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:24px;line-height:1;
+  background:hsl(var(--h,214) var(--tile-s) var(--tile-l))}
+.row .txt{flex:1;min-width:0;display:flex;flex-direction:column}
+.row .name{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.row .desc{font-size:13.5px;color:var(--sub);line-height:1.4}
+.chev{flex:none;width:20px;height:20px;color:var(--sub);opacity:.6}
+
+/* 상세 */
+.topbar{position:sticky;top:0;z-index:5;background:var(--bg);margin:0 -16px;padding:8px 8px 6px;display:flex;align-items:center}
+.back{display:flex;align-items:center;gap:2px;padding:8px 12px 8px 6px;border-radius:12px;font-size:16px;font-weight:700;color:var(--sub)}
+.back svg{width:22px;height:22px}
+.dhead{display:flex;align-items:center;gap:14px;padding:6px 6px 4px}
+.dhead .tile{width:58px;height:58px;border-radius:19px;font-size:31px}
+.dhead h1{font-size:24px;line-height:1.3;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.dhead p{font-size:14px;color:var(--sub)}
+.item{padding:20px;display:flex;gap:14px;align-items:flex-start}
+.item .tile{width:42px;height:42px;border-radius:14px;font-size:22px}
+.item .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.item h2{font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1.35}
+.tag{font-size:13px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:3px 10px;border-radius:999px;line-height:1.5}
+.item p{font-size:16px;color:var(--text)}
+.item p strong,.qa p strong{font-weight:700;color:var(--accent-ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:999px;background:var(--bg);font-size:15px;font-weight:500}
+.sec-title{font-size:19px;font-weight:800;padding:14px 6px 0;letter-spacing:-.01em}
+.qa{padding:6px 20px}
+.qa .q{padding:16px 0}
+.qa .q + .q{border-top:1px solid var(--line)}
+.qa h3{font-size:16.5px;font-weight:700;line-height:1.45;display:flex;gap:8px}
+.qa h3 span,.qa p .al{flex:none;font-weight:800}
+.qa h3 span{color:var(--accent)}
+.qa p{font-size:15.5px;color:var(--sub);margin-top:6px;display:flex;gap:8px}
+.qa p .al{opacity:.7}
+.cta{padding:20px;display:flex;flex-direction:column;gap:12px}
+.cta b{font-size:17px;font-weight:800}
+.cta small{font-size:14px;color:var(--sub);display:block}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;border-radius:16px;
+  background:var(--accent);color:#fff;font-size:17px;font-weight:700}
+.btn.ghost{background:var(--accent-soft);color:var(--accent-ink)}
+.btn svg{width:20px;height:20px}
+.note{font-size:13px;color:var(--sub);padding:4px 8px 0;line-height:1.55}
+
+/* 예약 */
+.callcard{padding:30px 22px 22px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.callcard .big{width:76px;height:76px;border-radius:26px;font-size:40px;margin-bottom:8px}
+.callcard h2{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.callcard .doc{font-size:15.5px;font-weight:500;color:var(--sub)}
+.callcard .num{font-size:32px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin:6px 0 2px}
+.hours{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);
+  padding:6px 14px;border-radius:999px;font-variant-numeric:tabular-nums}
+.callcard .btns{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:18px}
+.info{padding:8px 20px}
+.info li{list-style:none;display:flex;gap:12px;padding:14px 0;font-size:15.5px;align-items:flex-start}
+.info li + li{border-top:1px solid var(--line)}
+.info li i{font-style:normal;flex:none}
+
+/* 하단 탭 */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-top:1px solid var(--line)}
+.tabs .in{max-width:480px;margin:0 auto;display:flex;padding:6px 12px 10px}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:14px;font-size:12.5px;font-weight:700;color:var(--sub)}
+.tab svg{width:25px;height:25px}
+.tab[aria-current="page"]{color:var(--accent)}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--text);color:var(--bg);font-size:14.5px;font-weight:700;
+  padding:11px 18px;border-radius:999px;z-index:20;white-space:nowrap}
+.toast[hidden]{display:none}
+</style>
+</head>
+<body>
+<main class="app" id="app"></main>
+<nav class="tabs" aria-label="메뉴"><div class="in">
+  <a class="tab" id="tab-home" href="#home">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3.5h14A2.5 2.5 0 0 1 21.500 6v12a2.500 2.500 0 0 1-2.500 2.500H5A2.500 2.500 0 0 1 2.500 18V6A2.500 2.500 0 0 1 5 3.500Zm2.300 4.300a1 1 0 0 0 0 2h9.400a1 1 0 1 0 0-2H7.300Zm0 4.200a1 1 0 1 0 0 2h9.400a1 1 0 1 0 0-2H7.300Zm0 4.200a1 1 0 1 0 0 2h5.400a1 1 0 1 0 0-2H7.300Z" fill-rule="evenodd"/></svg>
+    주의사항
+  </a>
+  <a class="tab" id="tab-call" href="#call">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.200 2.800c.700-.200 1.500.100 1.900.800l1.700 3.200c.300.600.200 1.400-.300 1.900L9.300 9.900c-.200.200-.300.500-.100.800a11 11 0 0 0 4.100 4.100c.300.200.600.100.800-.100l1.200-1.200c.500-.500 1.300-.600 1.900-.300l3.200 1.700c.700.400 1 1.200.800 1.900-.500 2-2.300 3.700-4.600 3.500C9.600 19.900 4.100 14.400 3.700 7.400c-.200-2.300 1.500-4.100 3.500-4.600Z"/></svg>
+    예약 확인·변경
+  </a>
+</div></nav>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ───────── 병원 정보: 여기만 고치면 됩니다 ───────── */
+const CLINIC = {
+  name: "해양의료원 치과",
+  doctor: "성이수 선생님",
+  phone: "000-0000-0000",        // 실제 전화번호로 바꿔 주세요
+  hours: "08:30 – 17:30"
+};
+
+/* ───────── 주의사항 내용 (안내문 PDF 기준) ───────── */
+const GROUPS = [
+  ["general","일반 진료"],["surgery","발치 · 임플란트"],["etc","턱관절"]
+];
+const DATA = [
+{id:"scaling",g:"general",h:150,e:"✨",name:"스케일링",
+ items:[
+  {e:"🧊",h:"시림, 통증",b:"치석 제거 후 일시적으로 차고 뜨거운 것에 시리거나 통증이 있을 수 있어요. **시간이 지나면서 점차 괜찮아져요!**"},
+  {e:"👀",h:"치아 공간",b:"치석으로 메워져 있던 공간이 드러나면서 마치 치아 사이에 구멍이 생기거나 치아가 갈린 것처럼 보일 수 있으니 **놀라지 마세요!**"},
+  {e:"🪥",h:"정확한 칫솔질",b:"주기적인 스케일링도 중요하지만 **정확한 칫솔질이 잇몸 질환의 가장 좋은 예방법**이에요."},
+  {e:"📅",h:"정기 검진",tag:"6개월에 1번씩 체크!",b:"6개월에 1번씩은 구강검진과 함께 **정기적으로 스케일링**을 하는 것이 좋아요."}],
+ qa:[
+  ["스케일링 주기는 꼭 6개월에 1번인가요?","치주가 많이 안 좋으시거나 양치 관리가 잘 안 되는 경우 3개월 단위로, 구강 관리가 양호한 경우 1년에 1번 정도 필요해요. 6개월에 1번씩은 딱히 불편한 게 없더라도 내원하셔서 구강검진과 함께 스케일링 필요 여부를 체크해 주세요."],
+  ["식사는 언제부터 가능한가요?","식사는 바로 가능하고 너무 뜨겁거나 차가운 음식은 치아에 시린 증상을 더 심하게 할 수 있으니 일주일 동안은 피해주세요!"],
+  ["연 1회 보험 적용 스케일링은 언제 또 가능한가요?","스케일링을 언제 하시든 매년 1월 1일 기준으로 스케일링 잔여 횟수가 갱신돼요."],
+  ["스케일링 했는데도 착색이 남아있어요?","착색이 치아 면의 매우 미세한 주름이나 홈에 끼여서 100% 제거가 어려운 경우가 있어요."]]},
+
+{id:"resin",g:"general",h:28,e:"🦷",name:"레진 치료",
+ items:[
+  {e:"💉",h:"마취",tag:"조심 조심!",b:"마취는 2~3시간 후 정상적인 감각이 돌아와요. 마취가 풀리지 않은 상태에서 **볼이나 혀를 씹지 않게 조심**해 주세요!"},
+  {e:"🧊",h:"시림, 통증",tag:"차가운 음식 NO! 뜨거운 음식 NO!",b:"충치 제거 후 자극받은 치아는 일시적인 시린 증상이 나타날 수 있으니 **1주일 정도 차갑거나 뜨거운 음식 섭취를 자제**해 주세요!"},
+  {e:"🪥",h:"칫솔질, 치실, 치간칫솔 사용",tag:"위생관리는 철저히!",b:"레진 후 2차 충치 발생과 잇몸질환 예방을 위해 칫솔질을 세심하게 해주시고 **치실, 치간칫솔도 사용**하는 것을 추천해요."},
+  {e:"🦑",h:"레진 탈락 주의",b:"레진은 강한 힘이나 충격이 가해지면 깨지거나 떨어질 수 있어요. 되도록 **단단하고 질긴 음식은 피하고** 무리한 힘이 가해지지 않도록 해주세요!"}],
+ qa:[
+  ["레진 치료 후 어색하거나 불편한 증상이 나타나요!","레진 후 해당 부위의 치아가 다른 치아보다 먼저 닿거나 높은 느낌, 식사할 때 옆 또는 앞으로 걸리는 느낌이 들면 치과 내원 후 재조정을 받으셔야 해요."],
+  ["레진 치료 후 이가 아파요!","레진 치료 후 어색하고 불편한 증상이 1~2주 정도 나타날 수 있어요. 점차 완화되는 것이 정상이지만 호전되지 않을 경우 신경 치료가 필요하며 이러한 문제는 사전에 100% 예측하기 어려워요."],
+  ["레진 치료 후 떨어질 수 있나요?","환자의 식습관이나 씹는 습관, 칫솔질 방법 등에 따라 달라질 수 있어요. 레진이 탈락 또는 깨진 경우 치과로 전화해 주셔서 내원하시면 돼요."]]},
+
+{id:"inlay",g:"general",h:95,e:"🧩",name:"인레이 치료",
+ items:[
+  {e:"🦑",h:"보철 탈락, 파손 주의",b:"**끈적이는 엿, 과자, 단단한 음식** 섭취로 충격이 가해지면 간혹 인레이나 주변 치질이 파절될 우려가 있어 주의해 주세요."},
+  {e:"🪥",h:"칫솔질, 치실, 치간칫솔 사용",tag:"치실과 치간칫솔 사용!",b:"2차 충치 발생 또는 잇몸질환을 예방하기 위해 **꼼꼼한 칫솔질과 치실, 치간칫솔 사용**을 추천해요."},
+  {e:"🧊",h:"시림, 통증",tag:"일시적인 시린 증상 걱정 NO!",b:"일시적으로 차갑거나 뜨거운 것에 시린 증상이 있을 수 있어요. **시간이 지나면 자연스레 사라지니** 걱정하지 마세요!"},
+  {e:"📅",h:"정기 검진",tag:"6개월에 1번씩 체크!",b:"시간이 지나 보철물과 치아 사이 틈이 생겨 2차 충치로 보철물 일부가 깨지거나 떨어져 나가는 경우가 있어 **6개월~1년에 한번 정기적으로 치과 점검**이 필요해요!"}],
+ qa:[
+  ["인레이 치료 후 어색하거나 불편한 증상이 나타나요!","인레이 후 해당 부위의 치아가 다른 치아보다 먼저 닿거나 높은 느낌, 식사할 때 옆 또는 앞으로 걸리는 느낌이 들면 치과 내원 후 재조정을 받으셔야 해요."],
+  ["인레이가 탈락하면 어떻게 하나요?","경우에 따라 과도한 교합력에 의해 인레이를 붙일 때 사용한 접착제가 녹아서 탈락할 수 있어요. 탈락 시 변형되지 않도록 주의하시고 바로 치과로 가져오시면 다시 붙여드려요!"]]},
+
+{id:"endo",g:"general",h:335,e:"🌱",name:"신경 치료",
+ items:[
+  {e:"🍚",h:"식사 시 주의",tag:"식사주의!",b:"신경 치료 받은 치아는 약해져 있는 상태! **치료 부위로 음식을 씹으면 치아가 부러질 수 있으므로** 주의해야 해요!"},
+  {e:"🔁",h:"신경 치료",tag:"3~4회 진행",b:"신경 치료는 **1~2주 간격으로 보통 3~4회 정도** 진행돼요. 단, 증상과 상태에 따라 더 늘어날 수 있어요."},
+  {e:"💊",h:"통증",tag:"통증이 심할 경우 치과로 연락!",b:"신경을 제거하며 소독하는 치료라 마취가 풀리면 통증이 있을 수 있어요. **갑작스럽게 통증이 심해지거나 잇몸이 부풀어 오르는 경우는 치과로 꼭 연락**주세요."},
+  {e:"👑",h:"보철",tag:"신경 치료 후 보철을 씌워 보호!",b:"신경 치료 받은 치아는 아주 약하기 때문에 **반드시 보철을 씌워서 보호**를 해주어야 해요."}],
+ qa:[
+  ["신경 치료 후 막아놓은 약재가 조금 떨어졌어요. 괜찮나요?","약재가 완전히 탈락한 경우 내원을 해주는 것이 좋지만 일부 윗부분이 탈락한 경우 따로 내원을 하지 않아도 돼요. 하지만 가장자리가 깨질 위험이 커질 수 있으니 식사는 꼭 조심하세요!"],
+  ["신경 치료 후 하루 정도 아프다가 이제 나아졌는데 괜찮나요?","신경 치료 후 통증이 있는 것은 정상적인 거예요. 챙겨드린 처방 약을 복용하시고, 증상이 심하거나 나아지지 않는 경우 치과로 연락해주세요."],
+  ["왜 신경 치료 후에도 아픈가요?","신경의 잔 가지들 때문! 신경의 끝은 나무 뿌리처럼 미세한 가지들이 있는데 현재 의료 기구로는 미세한 신경까지는 접근이 어려워요. 시간이 지나면서 차츰 호전되니 너무 걱정하지 마세요~"]]},
+
+{id:"crown",g:"general",h:275,e:"👑",name:"크라운 치료",
+ items:[
+  {e:"🦑",h:"보철 탈락, 파손 주의",b:"처음에는 **부드러운 음식 위주로** 식사하시고 끈적하고 딱딱한 음식은 보철을 탈락시키거나 파손시킬 수 있으니 주의가 필요해요!"},
+  {e:"🪥",h:"올바른 칫솔질",tag:"올바른 양치와 치실 사용~",b:"처음에는 잇몸이 불편하고 조금씩 피가 날 수 있는데 양치와 치실 사용으로 청결을 유지해주면 **2~3일 내로 치유**돼요."},
+  {e:"🫧",h:"위생 관리",tag:"위생관리는 철저히!",b:"정교하게 씌운 치아도 미세한 틈 사이로 음식물이 들어가면 충치가 생길 수 있으니 보철 수명을 늘리기 위해서는 **위생 관리를 철저히** 해주세요!"},
+  {e:"🧊",h:"시림, 통증",tag:"일시적인 시린 증상 걱정 NO!",b:"치아와 보철의 열전도율이 다르기 때문에 뜨겁고 차가운 음식을 드실 때 시린 증상이 일시적으로 나타날 수 있지만 **차츰 괜찮아지니** 걱정하지 마세요!"}],
+ qa:[
+  ["크라운 치료 후 어색하거나 불편한 증상이 나타나요!","크라운 치료 후 처음에 작은 이물감이 느껴질 수 있지만 대부분 2주 이내로 적응돼요. 만약 4주 이상 불편감을 호소하거나 잇몸이 붓고 피가 날 경우에는 치과로 연락 주시고 내원해 주세요."],
+  ["신경 치료 없이 자연치 상태에서 보철 치료를 한 경우?","일시적으로 차고 뜨거운 것에 시리거나 불편감이 있을 수 있지만 시간이 지나면 사라져요. 간혹 호전되지 않으면 신경 치료를 받아야 하며 이러한 문제는 사전에 100% 예측하기 어려워요."],
+  ["크라운이 탈락하거나 파손되면 어떻게 하나요?","재료에 따라 마모 또는 스크래치가 발생할 수 있어요. 혹, 탈락되면 분실되거나 파손되지 않도록 잘 보관하고 신속히 내원해주세요. 분실이나 파손 시 추가 비용이 발생할 수 있어요."]]},
+
+{id:"temp",g:"general",h:200,e:"⏳",name:"임시 치아",
+ items:[
+  {e:"🦑",h:"임시 치아 탈락 주의",b:"재료의 특성상 **딱딱하고 질긴 것에 깨지거나 끈적이는 음식에 빠질 수 있으므로** 조심해 주세요!"},
+  {e:"🪥",h:"칫솔질",tag:"칫솔질은 정상적으로~",b:"임시 치아 부위에도 칫솔질은 정상적으로 해주세요. 단, 치실 사용 시 탈락의 원인이 될 수 있어 **치간 칫솔로 관리**하시기를 권장해요!"},
+  {e:"📞",h:"깨지거나 탈락 시",tag:"문제 있을 경우 치과로 연락!",b:"깨지거나 탈락된 경우 치과로 연락을 주시고 **깨지거나 탈락된 임시 치아는 꼭 챙겨와주세요!**"},
+  {e:"👑",h:"사용 기간",tag:"영구 보철물 들어가기 전까지!",b:"사용 기간은 영구 보철물이 들어가기 전까지로 생각하시면 돼요."}],
+ qa:[
+  ["임시 치아가 탈락하지 않게 처음부터 잘 안 떨어지는 접착제로 붙이면 안 되나요?","임시 치아가 떨어져서 많이 놀라셨죠? 단단한 접착제로 붙이면 사용 중에는 탈락 가능성이 적어 편할 수 있더라도 임시 치아를 제거할 때 잘 빠지지 않아 불편한 경우가 있어요."],
+  ["임시 치아로 식사를 해도 되나요?","되도록 반대편으로 식사를 하시는 것이 좋지만 임시 치아로도 부드러운 음식은 식사할 수 있어요."],
+  ["임시 치아가 걸리고 불편해요.","처음 임시 치아를 넣으면 어색한 느낌이 들 수 있어요. 혀가 쓸리거나 너무 높아 불편한 경우에는 치과에 따로 연락 후 내원해서 체크를 받아보시는 것이 좋아요."]]},
+
+{id:"extraction",g:"surgery",h:8,e:"🩹",name:"발치",
+ items:[
+  {e:"🩹",h:"지혈",tag:"피가 계속 날 경우 치과로 연락",b:"**거즈는 2시간 동안 물고 계세요!** 입에 고인 피나 침은 뱉지 마시고 삼켜주세요~!"},
+  {e:"🚭",h:"금연, 금주",tag:"금연! 금주!",b:"**2~3일 술·담배는 삼가주세요.** 음주는 감염을 유발하며 빨대 사용, 흡연, 침 뱉기와 같이 입 안에 음압이 차는 행동을 할 경우 피가 계속 날 수 있으니 조심해 주세요!"},
+  {e:"🧊",h:"냉찜질",tag:"이틀간 냉찜질",b:"**이틀간** 통증 감소와 붓기 해소를 위해 **냉찜질**을 해주세요. 이틀이 지나도 붓기가 있을 시엔 온찜질을 해주시면 서서히 없어져요."},
+  {e:"💊",h:"통증",b:"**처방 받은 약은 지시에 따라 복용**해주세요. 그래도 통증이 심할 경우에는 치과로 연락주세요."}],
+ qa:[
+  ["식사는 언제부터 가능한가요?","지혈이 되고 난 뒤에 식사해주세요. 지혈은 됐더라도 마취는 아직 안 풀렸을 수 있으니 볼이나 혀를 잘못하여 씹지 않게 조심해 주세요! 꼭 죽이 아니더라도 뜨겁거나 짠 자극적인 음식만 아니라면 식사가 가능해요."],
+  ["마취는 언제 풀리나요?","보통 2~3시간 정도 뒤에 풀리지만, 마취가 오래가더라도 너무 걱정하지 마세요. 체질이나 마취 양에 따라 더 길게 가는 경우도 있어요."],
+  ["발치 자리는 언제쯤 아무나요?","잇몸이 아무는 것은 한 달, 잇몸 내부의 뼈가 차는 것은 2~3달 이상 걸리니 관리를 잘 해주세요."],
+  ["양치를 해도 되나요?","발치 자리는 물로 자주 헹궈내어 음식물이 고이지 않게 관리해주시고 이 외의 부분은 평소대로 양치하셔도 돼요."]]},
+
+{id:"implant",g:"surgery",h:225,e:"🔩",name:"임플란트 수술",
+ items:[
+  {e:"🩹",h:"지혈",tag:"2시간 물고 계세요~ 피나 침은 삼켜주세요~",b:"물고 계신 거즈는 **2시간 정도 물고 계세요! 입에 고인 피나 침은 뱉지 마시고 최대한 삼키고, 말은 되도록 삼가**주세요."},
+  {e:"🧊",h:"냉찜질",tag:"5분 간격으로 냉찜질 해주세요~",b:"수술 부위나 잇몸의 컨디션에 따라 부을 수 있어요. **이틀간 수술 부위를 5분 간격으로 얼음 찜질**을 해주세요."},
+  {e:"💊",h:"처방약",b:"수술 후에 통증이 없더라도 **2차 감염 예방**을 위해서 **처방약 복용**은 필수!"},
+  {e:"🤧",h:"코 푸는 행동 주의",b:"상악 시술 시 **코피가 날 수도 있으며 코를 풀지 않도록** 주의! 2주간 **등산, 비행기 탑승, 수영도 피해** 주세요."},
+  {e:"⚽",h:"격한 운동 주의",tag:"격한 운동 NO!",b:"임플란트 수술 후 일주일 동안은 **격한 운동이나 목욕, 뜨거운 음식은 피해** 주세요!"},
+  {e:"🪥",h:"칫솔질",b:"**수술 부위를 피해서 칫솔질**을 해주시고 처방 드린 **소독 양치액으로 자주 자주 헹궈**주세요!"},
+  {e:"🚭",h:"금주, 금연",tag:"금연! 금주! 빨대 NO",b:"**음주와 흡연은 절대 NO!** 음주는 염증을 유발하며 흡연은 잇몸 뼈와 식립체의 결합을 방해해요. **가급적 한 달간은 치유를 위해 금주, 금연** 해주세요!"},
+  {e:"🧵",h:"실밥 터짐 주의",tag:"실밥 터짐 주의!",b:"**시술 부위를 누르거나 입안을 젖혀보는 행위**는 실밥 터짐의 원인이 되며 **입안에 음압이 생기는 행위(빨대 사용, 흡연, 침 뱉기)는 피해** 주세요."}],
+ qa:[
+  ["전에 사용하던 틀니나 장치는 어떻게 하나요?","이전에 사용하던 틀니나 장치물 사용 여부는 임플란트 수술 후 치과에서 상담해 주세요."],
+  ["붓기가 심한데 어떻게 하나요?","얼음팩을 준비하여 수술 부위의 뺨에 대주고, 너무 차가워지면 떼어주세요. 이틀간은 냉찜질, 그 이후에는 온찜질을 해주세요. 그래도 붓기가 너무 심할 때는 치과로 연락 후 내원해 주세요."]]},
+
+{id:"bone-graft",g:"surgery",h:36,e:"🦴",name:"뼈이식",
+ items:[
+  {e:"🩹",h:"지혈",b:"물고 계신 거즈는 **2시간 정도 물고 계세요.** 입에 고인 피나 침은 뱉지 마시고 삼켜주세요."},
+  {e:"✋",h:"수술 부위 건드리지 않기",b:"이식한 뼈가 자리 잡으려면 움직이지 않아야 해요. **혀나 손가락으로 만지거나 누르지 말고, 입술을 당겨 들여다보지 마세요.**"},
+  {e:"🍚",h:"식사",b:"**수술 부위 반대쪽으로** 부드러운 음식을 드세요. 뜨겁거나 맵고 딱딱한 음식은 일주일 정도 피해주세요."},
+  {e:"🧊",h:"냉찜질",b:"수술 후 2~3일째에 가장 많이 부을 수 있어요. **이틀간 냉찜질**을 해주시고, 그 이후에도 붓기가 남으면 온찜질을 해주세요."},
+  {e:"💊",h:"처방약",b:"통증이 없더라도 감염 예방을 위해 **처방약은 끝까지 복용**해주세요."},
+  {e:"🪥",h:"칫솔질",b:"**수술 부위는 피해서 칫솔질**하고, 처방 드린 소독 양치액으로 **가볍게** 헹궈주세요. 세게 가글하거나 침을 뱉는 행동은 피해주세요."},
+  {e:"🚭",h:"금주, 금연",b:"흡연은 이식한 뼈가 붙는 것을 방해하고 음주는 염증을 유발해요. **가급적 한 달간은 금주, 금연** 해주세요. 빨대 사용도 피해주세요."},
+  {e:"⚽",h:"격한 운동 주의",b:"일주일 동안은 **격한 운동, 사우나, 뜨거운 목욕은 피해**주세요."}],
+ qa:[
+  ["입안에 모래알 같은 가루가 나와요.","이식한 뼈 가루가 조금 나올 수 있어요. 소량이면 걱정하지 않으셔도 되지만, 계속 많이 나오면 치과로 연락해 주세요."],
+  ["실밥이 풀리거나 막 같은 것이 보여요.","수술 부위를 덮어둔 막이 보일 수 있어요. 만지거나 당기지 마시고 치과로 연락 후 내원해 주세요."],
+  ["붓기와 멍이 심해요.","뼈이식 후에는 붓기가 2~3일째에 가장 심하고 멍이 들 수 있으며, 보통 1~2주 안에 가라앉아요. 붓기가 점점 심해지거나 열이 나면 치과로 연락해 주세요."]]},
+
+{id:"sinus",g:"surgery",h:185,e:"👃",name:"상악동 거상술",
+ items:[
+  {e:"🤧",h:"코 푸는 행동 주의",b:"상악동 거상술 후 **코피가 날 수 있어요. 코를 풀지 않도록 주의**해 주세요!"},
+  {e:"✈️",h:"활동적인 운동 주의",b:"**2주 동안**은 활동적인 운동 **(등산, 비행기 탑승, 수영 등) 금지**예요."},
+  {e:"😮",h:"기침, 재채기 시 입 벌리기",tag:"입을 다물고 힘을 가해 기침, 재채기 NO!",b:"**기침, 재채기 시 최대한 입을 벌려서** 해주세요."},
+  {e:"🚿",h:"머리 서서 감기",tag:"머리를 숙이지 않은 상태에서 감아주세요!",b:"**한 달 동안은 머리를 서서** 감아주세요."}],
+ qa:[
+  ["축농증 증상이 생겼어요! 괜찮은 건가요?","상악동 거상술 후 일시적으로 축농증 현상이 발생할 수 있어요. 시간이 지나면 자연스레 사라지니 걱정하지 않으셔도 돼요."]]},
+
+{id:"implant-crown",g:"surgery",h:135,e:"😁",name:"임플란트 보철",
+ items:[
+  {e:"🙂",h:"불편감",tag:"일시적인 증상! 걱정 NO!",b:"임플란트와 맞물리는 치아는 오랫동안 기능을 하지 않은 상태! 처음 얼마간은 씹을 때 맞물리는 치아의 불편함을 느끼실 수 있으나 **1~2주 후 점차 사라지니 걱정하지 마세요.**"},
+  {e:"🍚",h:"음식",b:"사용되지 않았던 턱 근육의 힘이 길러지는 시간도 필요해요. **부드러운 음식부터 일반적인 음식의 순서**로 드시는 것이 좋아요. **딱딱하거나 질긴 음식(누룽지, 아몬드, 질긴 오징어 등)은 피해**주세요."},
+  {e:"😬",h:"습관",tag:"이갈이, 악 물기 습관 X",b:"임플란트 보철물은 옆에서 가해지는 힘에 가장 약해요. 음식을 갈아 먹는 식사법은 좋지 않으니 **상하로 씹는 습관을 들이세요.** 음식을 저작하는 시간 이외에는 **힘이 가해지지 않도록 주의**하셔야 해요. **이갈이 습관, 악 물기 습관이 있으시다면 미리 말씀해 주세요.**"},
+  {e:"🪥",h:"구강 위생",tag:"올바른 양치와 치실 사용~",b:"임플란트 치아는 충치가 생길 염려는 없지만 **자연 치아와 임플란트 보철물의 형태적인 차이로 인해 음식물 끼임**이 있을 수 있어요. 관리가 잘되지 않으면 임플란트 주위염 및 주위 뼈가 약해져요. **올바른 양치와 구강 보조용품(치실, 치간 칫솔 등)을 함께 이용하여 양치**를 해주셔야 해요."}],
+ qa:[
+  ["흔들거리는 느낌이 나는데 어떻게 하나요?","임플란트는 나사로 연결되어 있어 종종 나사가 풀릴 수 있으니 이 경우 바로 내원해주세요. 나사가 풀린 경우 흔들리는 느낌을 받을 수 있으며, 장기간 방치 시 임플란트 수명이 현저히 단축될 수 있어요. 임플란트는 뼈에 단단히 고정되어 있으니 주변 자연치는 시간이 지남에 따라 이동하기 때문에 자연치와 임플란트 사이에 틈이 생기는 경우가 있어요. 이 경우 치실이나 치간 칫솔을 이용하여 관리해 주셔야 하며 내원하여 점검 받으세요."]]},
+
+{id:"tmj",g:"etc",h:210,e:"😮",name:"턱관절",
+ items:[
+  {e:"🥱",h:"입벌림",tag:"입 크게 벌리지 않기!",b:"입을 크게 벌리지 않도록 주의! **하품, 부피가 큰 음식 섭취, 노래 부르기, 소리 지르기 등** 갑자기 입 벌리기는 안돼요."},
+  {e:"😬",h:"습관",tag:"이갈이, 악 물기 습관 X",b:"악습관을 고쳐주세요. **이갈이, 악 무는 습관 등**이 있는지 확인해주세요."},
+  {e:"🦑",h:"음식",b:"오징어, 껌, 갈비, 얼음 등 **딱딱한 음식은 피해요. 카페인이나 향신료 많은 음식은 통증을 악화** 시키므로 자제하는 것이 좋아요."},
+  {e:"🧘",h:"운동",tag:"스트레스 잘가! 긴장 풀기!",b:"몸에 항상 힘이 들어가 긴장 상태에 있는 경우, **의식적으로 습관을 고치려 노력**해 주세요. **스트레스는 질환에 대한 저항력을 떨어트리므로** 완화를 위해 노력해야 해요."},
+  {e:"🪑",h:"자세",tag:"바른 자세 유지~",b:"**항상 바른 자세를 유지**하고, 엎드려 자는 습관을 바꾸고, **낮은 베개를 사용**해주세요. **무거운 물건을 어깨 한 쪽으로만 매거나, 음식을 한 쪽으로 씹는 습관을 피하는 것**이 좋아요."},
+  {e:"♨️",h:"온찜질",tag:"온찜질을 해주세요 :)",b:"턱관절 주변으로 **온찜질을 해주어 근육의 긴장을 풀어주세요.** 단, 찜질 후 **심하게 붓거나 통증이 악화될 경우 중단**해야 해요."}],
+ qa:[
+  ["어느 순간부터 턱을 벌릴 때마다 ‘딱’ 하는 소리가 나요!","턱관절에 장애가 생기게 되면 초기에는 입을 벌리거나 다물 때 귀 앞에서 소리가 나고, 대개는 귀 앞부분이나 턱과 얼굴, 머리에 통증이 생겨요. 질환이 진행되면 통증이 심해지고 입을 벌릴 수 없게 되며 일상 생활에 지장을 받게 돼요. 턱관절 장애는 여러 가지 요인이 복합적으로 작용해 발생하며 초기 증상은 자가 행동 요법으로도 완화될 수 있어요."],
+  ["자가 행동 요법으로도 나아지지 않고 통증이 심해졌을 땐 어떻게 해야 할까요?","자가 행동 요법으로도 개선이 되지 않고 통증이 심해지거나 증상이 악화된다면 물리 치료나 약물 치료, 교합 안전 장치(SPLINT) 치료, 외과적 시술이 필요할 수 있어요."]]}
+];
+
+/* ───────── 화면 그리기 ───────── */
+const app = document.getElementById("app");
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';
+const PHONE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.200 2.800c.700-.200 1.500.100 1.900.800l1.700 3.200c.300.600.200 1.400-.300 1.900L9.300 9.900c-.200.200-.300.500-.100.800a11 11 0 0 0 4.100 4.100c.300.200.600.100.800-.100l1.200-1.200c.500-.500 1.300-.600 1.900-.300l3.200 1.700c.700.400 1 1.200.800 1.900-.500 2-2.300 3.700-4.600 3.500C9.600 19.900 4.100 14.400 3.700 7.400c-.200-2.300 1.500-4.100 3.500-4.600Z"/></svg>';
+const telHref = "tel:" + CLINIC.phone.replace(/[^0-9+]/g,"");
+const title = d => d.title || (d.name + (d.id==="tmj" ? " 주의사항" : " 후 주의사항"));
+
+function row(d){
+  return `<a class="row" href="#${d.id}" style="--h:${d.h}">
+    <span class="tile" aria-hidden="true">${d.e}</span>
+    <span class="txt"><span class="name">${esc(d.name)}</span></span>${CHEV}</a>`;
+}
+function home(){
+  return `<section class="view">
+    <header class="hero"><p class="brand">${esc(CLINIC.name)}</p><p class="hi">치료받느라 고생 많으셨어요</p><h1>어떤 치료를<br>받으셨나요?</h1></header>
+    ${GROUPS.map(([g,label]) => `<h2 class="group-title">${label}</h2>
+      <div class="card list">${DATA.filter(d=>d.g===g).map(row).join("")}</div>`).join("")}
+    <p class="note">안내 내용은 일반적인 주의사항이에요. 증상이 심하거나 걱정되면 치과로 연락해 주세요.</p>
+  </section>`;
+}
+function detail(d){
+  return `<section class="view" style="--h:${d.h}">
+    <div class="topbar"><a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>전체 목록</a></div>
+    <header class="dhead"><span class="tile" aria-hidden="true">${d.e}</span>
+      <div><h1>${esc(title(d))}</h1><p>천천히 읽어 보세요</p></div></header>
+    ${d.items.map(it => `<article class="card item"><span class="tile" aria-hidden="true">${it.e}</span>
+      <div class="body"><h2>${esc(it.h)}</h2>
+      ${it.tag ? `<span class="tag">${esc(it.tag)}</span>` : ""}
+      ${it.b ? `<p>${rich(it.b)}</p>` : ""}
+      ${it.chips ? `<div class="chips">${it.chips.map(c=>`<span class="chip"><span aria-hidden="true">${c[0]}</span>${esc(c[1])}</span>`).join("")}</div>` : ""}
+      </div></article>`).join("")}
+    ${d.qa.length ? `<h2 class="sec-title">자주 묻는 질문</h2>
+      <div class="card qa">${d.qa.map(([q,a]) => `<div class="q"><h3><span>Q</span>${esc(q)}</h3><p><span class="al">A</span><span>${esc(a)}</span></p></div>`).join("")}</div>` : ""}
+    <div class="card cta"><div><b>불편하거나 걱정되는 점이 있나요?</b><small>전화 주시면 바로 도와드릴게요 · ${CLINIC.hours}</small></div>
+      <a class="btn ghost" href="#call">${PHONE}전화로 문의하기</a></div>
+  </section>`;
+}
+function call(){
+  return `<section class="view">
+    <header class="hero"><p class="brand">${esc(CLINIC.name)}</p><p class="hi">예약 확인 · 변경</p><h1>전화 한 통이면<br>바로 도와드려요</h1></header>
+    <div class="card callcard" style="--h:214">
+      <span class="tile big" aria-hidden="true">📞</span>
+      <h2>${esc(CLINIC.name)}</h2>
+      <p class="doc">담당의 : ${esc(CLINIC.doctor)}</p>
+      <p class="num">${esc(CLINIC.phone)}</p>
+      <span class="hours"><span aria-hidden="true">🕗</span>통화 가능 시간 ${CLINIC.hours}</span>
+      <div class="btns">
+        <a class="btn" href="${telHref}">${PHONE}전화 걸기</a>
+        <button class="btn ghost" type="button" id="copy">전화번호 복사</button>
+      </div>
+    </div>
+    <ul class="card info">
+      <li><i aria-hidden="true">🗓️</i><span>예약 날짜와 시간을 확인하거나 바꾸고 싶을 때 전화해 주세요.</span></li>
+      <li><i aria-hidden="true">🕗</i><span>전화는 <strong>${CLINIC.hours}</strong>에 받을 수 있어요.</span></li>
+      <li><i aria-hidden="true">💬</i><span>치료 후 통증이 심하거나 피가 멈추지 않을 때도 이 번호로 연락해 주세요.</span></li>
+    </ul>
+  </section>`;
+}
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>{t.hidden = true}, 2200);
+}
+function render(){
+  const key = (location.hash || "").replace(/^#/,"");
+  const d = DATA.find(x=>x.id===key);
+  const isCall = key === "call";
+  app.innerHTML = isCall ? call() : d ? detail(d) : home();
+  document.getElementById("tab-home").toggleAttribute("aria-current", false);
+  document.getElementById("tab-call").toggleAttribute("aria-current", false);
+  document.getElementById(isCall ? "tab-call" : "tab-home").setAttribute("aria-current","page");
+  document.title = d ? title(d) : isCall ? "예약 확인·변경" : CLINIC.name + " 주의사항";
+  window.scrollTo(0,0);
+  const copy = document.getElementById("copy");
+  if (copy) copy.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(CLINIC.phone); toast("전화번호를 복사했어요"); }
+    catch (e) { toast("복사가 안 돼요. 번호를 길게 눌러 복사해 주세요"); }
+  });
+}
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
