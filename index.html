@@ -107,7 +107,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .callcard{padding:30px 22px 22px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
 .callcard .big{width:76px;height:76px;border-radius:26px;font-size:40px;margin-bottom:8px}
 .callcard h2{font-size:20px;font-weight:800;letter-spacing:-.01em}
-.callcard .doc{font-size:15.5px;font-weight:500;color:var(--sub)}
 .callcard .num{font-size:32px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin:6px 0 2px}
 .hours{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);
   padding:6px 14px;border-radius:999px;font-variant-numeric:tabular-nums}
@@ -146,7 +145,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ───────── 병원 정보: 여기만 고치면 됩니다 ───────── */
 const CLINIC = {
   name: "해양의료원 치과",
-  doctor: "성이수 선생님",
   phone: "000-0000-0000",        // 실제 전화번호로 바꿔 주세요
   hours: "08:30 – 17:30"
 };
@@ -339,7 +337,6 @@ function call(){
     <div class="card callcard" style="--h:214">
       <span class="tile big" aria-hidden="true">📞</span>
       <h2>${esc(CLINIC.name)}</h2>
-      <p class="doc">담당의 : ${esc(CLINIC.doctor)}</p>
       <p class="num">${esc(CLINIC.phone)}</p>
       <span class="hours"><span aria-hidden="true">🕗</span>통화 가능 시간 ${CLINIC.hours}</span>
       <div class="btns">
