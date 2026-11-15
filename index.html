@@ -110,6 +110,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .callcard .num{font-size:32px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin:6px 0 2px}
 .hours{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);
   padding:6px 14px;border-radius:999px;font-variant-numeric:tabular-nums}
+.callcard .busy{font-size:14.5px;line-height:1.55;color:var(--sub);margin-top:10px}
 .callcard .btns{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:18px}
 .info{padding:8px 20px}
 .info li{list-style:none;display:flex;gap:12px;padding:14px 0;font-size:15.5px;align-items:flex-start}
@@ -328,18 +329,19 @@ function detail(d){
       </div></article>`).join("")}
     ${d.qa.length ? `<h2 class="sec-title">자주 묻는 질문</h2>
       <div class="card qa">${d.qa.map(([q,a]) => `<div class="q"><h3><span>Q</span>${esc(q)}</h3><p><span class="al">A</span><span>${esc(a)}</span></p></div>`).join("")}</div>` : ""}
-    <div class="card cta"><div><b>불편하거나 걱정되는 점이 있나요?</b><small>전화 주시면 바로 도와드릴게요 · ${CLINIC.hours}</small></div>
+    <div class="card cta"><div><b>불편하거나 걱정되는 점이 있나요?</b><small>전화로 문의해 주세요 · ${CLINIC.hours}</small></div>
       <a class="btn ghost" href="#call">${PHONE}전화로 문의하기</a></div>
   </section>`;
 }
 function call(){
   return `<section class="view">
-    <header class="hero"><p class="brand">${esc(CLINIC.name)}</p><p class="hi">예약 확인 · 변경</p><h1>전화 한 통이면<br>바로 도와드려요</h1></header>
+    <header class="hero"><p class="brand">${esc(CLINIC.name)}</p><p class="hi">예약 확인 · 변경</p><h1>예약 확인·변경은<br>전화로 도와드려요</h1></header>
     <div class="card callcard" style="--h:214">
       <span class="tile big" aria-hidden="true">📞</span>
       <h2>${esc(CLINIC.name)}</h2>
       <p class="num">${esc(CLINIC.phone)}</p>
       <span class="hours"><span aria-hidden="true">🕗</span>통화 가능 시간 ${CLINIC.hours}</span>
+      <p class="busy">진료 중이거나 바쁠 때는 전화를 바로 받지 못할 수 있어요.<br>잠시 후 다시 걸어 주세요.</p>
       <div class="btns">
         <a class="btn" href="${telHref}">${PHONE}전화 걸기</a>
         <button class="btn ghost" type="button" id="copy">전화번호 복사</button>
@@ -347,7 +349,7 @@ function call(){
     </div>
     <ul class="card info">
       <li><i aria-hidden="true">🗓️</i><span>예약 날짜와 시간을 확인하거나 바꾸고 싶을 때 전화해 주세요.</span></li>
-      <li><i aria-hidden="true">🕗</i><span>전화는 <strong>${CLINIC.hours}</strong>에 받을 수 있어요.</span></li>
+      <li><i aria-hidden="true">🕗</i><span>전화는 <strong>${CLINIC.hours}</strong>에 받을 수 있어요. 진료 상황에 따라 바로 받지 못할 수도 있어요.</span></li>
       <li><i aria-hidden="true">💬</i><span>치료 후 통증이 심하거나 피가 멈추지 않을 때도 이 번호로 연락해 주세요.</span></li>
     </ul>
   </section>`;
